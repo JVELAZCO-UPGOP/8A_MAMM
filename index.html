@@ -47,101 +47,63 @@
       <div class="actions-menu">
         <h1>Mascotas</h1>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-          Nuevo
+            Nuevo
         </button>
-      </div>
-
-      <table class="table table-hover">
+    </div>
+    <table class="table table-stripped table-hover">
         <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            <th scope="col"></th>
-          </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Dueño</th>
+                <th scope="col"></th>
+            </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn btn-info"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn btn-danger"><i class="fas fa-trash-alt"></i></button>                
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn btn-info"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn btn-danger"><i class="fas fa-trash-alt"></i></button> 
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td >Larry the Bird</td>
-            <td>Aqui andamos</td>
-            <td>@twitter</td>
-            <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn btn-info"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn btn-danger"><i class="fas fa-trash-alt"></i></button> 
-              </div>
-            </td>
-          </tr>
+        <tbody id="lista-mascotas">
+            
         </tbody>
-      </table> 
+    </table>
+</div>
+<div class="modal fade" id="exampleModalCenter" data-backdrop= "static" data-keyboard= 'false' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Mascota</h5>
+          <button type="button" class="close" id= "btn-Close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="form">
+                <input type="hidden" id="indice" >
+                <div class="form-row">
+                    <div class="col">
+                        <select id="tipo" class="form-control">
+                          <option>Tipo animal</option>
+                          <option>Perro</option>
+                          <option>Gato</option>
+                          <option>Caballo</option>
+                          <option>Otro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+                  </div>
+                  <div class="col">
+                    <input type="text" id="dueno" name="dueno" class="form-control" placeholder="Dueño">
+                </div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-Cerrar">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-guardar">Crear</button>
+        </div>
+      </div>
     </div>
-    <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Macosta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-row">
-            <div class="col">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Tipo animal</option>
-                <option>Perro</option>
-                <option>Gato</option>
-                <option>Pájaro</option>
-                <option>Caballo</option>
-                <option>Otro</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="col">
-              <input type="text" name="nombre" class="form-control" placeholder="Nombre">
-            </div>
-            <div class="col">
-              <input type="text" name="dueno" class="form-control" placeholder="Dueño">
-            </div>          
-           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>
 
     <!-- Optional JavaScript -->
