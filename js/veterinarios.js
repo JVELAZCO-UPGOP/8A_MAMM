@@ -107,8 +107,17 @@ function resetModal() {
 
 function eliminar(index) {
   return function clickEnEliminar() {
-    veterinarias = veterinarias.filter((veterinaria, indiceVeterinaria)=>indiceVeterinaria !== index);
-    listarVeterinarias();
+    var respuesta = confirm("Estas seguro de eliminar el verinario/a?");
+
+    if (respuesta == true)
+    {
+      veterinarias = veterinarias.filter((veterinaria, indiceVeterinaria)=>indiceVeterinaria !== index);
+      listarVeterinarias();
+    }
+    else
+    {
+      return false;
+    }
   }
 }
 

@@ -73,8 +73,6 @@ function enviarDatoCerrar() {
   }
 }
 
-function enviarDatoClose() {
-}
 
 $("#btn-Close").on("click",function() {
   nombre.value = '';
@@ -113,9 +111,18 @@ function resetModal() {
 
 function eliminar(index) {
   return function clickEnEliminar() {
-    mascotas = mascotas.filter((mascota, indiceMascota)=>indiceMascota !== index);
-    listarMascotas();
-  }
+    var respuesta = confirm("Estas seguro de eliminar la mascota?");
+
+    if (respuesta == true)
+    {
+      mascotas = mascotas.filter((mascota, indiceMascota)=>indiceMascota !== index);    
+      listarMascotas();  
+    }
+    else
+    {
+      return false;
+    }
+  }  
 }
 
 /*$('#exampleModalCenter').modal({

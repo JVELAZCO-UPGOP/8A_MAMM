@@ -6,6 +6,8 @@ const indice = document.getElementById('indice');
 const form = document.getElementById('form');
 const btnGuardar = document.getElementById('btn-guardar');
 const listaDuenos = document.getElementById('lista-duenos');
+const btnCerrar =  document.getElementById('btn-Cerrar');
+const EditarDueno = document.getElementById('exampleModalCenterTitle');
 
 let duenos = [
   {
@@ -63,16 +65,35 @@ function enviarDatos(evento) {
   resetModal();
 }
 
+function enviarDatoCerrar() {
+  const accion = btnCerrar.innerHTML;
+  switch(accion) {
+    case  'Cerrar':
+      EditarDueno.innerHTML = 'Nuevo Dueño'
+      btnGuardar.innerHTML = 'Editar'
+      resetModal();
+    break;  
+  }
+}
+
 function editar(index) {
+  btnGuardar.innerHTML = 'Editar'
+  btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
-    btnGuardar.innerHTML = 'Editar'
-    $('#exampleModalCenter').modal('toggle');
-    const dueno = duenos[index];
-    indice.value = index;
-    nombre.value = dueno.nombre;
-    apellido.value = dueno.apellido;
-    pais.value = dueno.pais;
-    identificacion.value = dueno.identificacion;
+    if (btnGuardar.innerHTML == 'Editar'){
+      EditarDueno.innerHTML = 'Ediar Dueño'
+      btnGuardar.innerHTML = 'Editar'
+      $('#exampleModalCenter').modal('toggle');
+      const dueno = duenos[index];
+      indice.value = index;
+      nombre.value = dueno.nombre;
+      apellido.value = dueno.apellido;
+      pais.value = dueno.pais;
+      identificacion.value = dueno.identificacion;
+    }
+    else if (btnCerrar.innerHTML == 'Cerrar'){
+      btnGuardar.innerHTML = 'Editar'
+    }
   }
 }
 
@@ -87,12 +108,31 @@ function resetModal() {
 
 function eliminar(index) {
   return function clickEnEliminar() {
-    duenos = duenos.filter((dueno, indiceDueno)=>indiceDueno !== index);
-    listarDuenos();
+    var respuesta = confirm("Estas seguro de eliminar el dueño?");
+    
+    if (respuesta == true)
+    {
+      duenos = duenos.filter((dueno, indiceDueno)=>indiceDueno !== index);
+      listarDuenos();
+    }
+    else
+    {
+      return false;
+    }    
   }
 }
+
+$("#btn-Close").on("click",function() {
+  indice.value = '';
+  nombre.value = '';
+  apellido.value = '';
+  pais.value = '';
+  identificacion.value = '';
+  EditarVeterinario.innerHTML = 'Nuevo Dueño'
+});
 
 listarDuenos();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
+btnCerrar.onclick = enviarDatoCerrar;
