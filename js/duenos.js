@@ -129,6 +129,7 @@ $("#btn-Close").on("click",function() {
   pais.value = '';
   identificacion.value = '';
   EditarVeterinario.innerHTML = 'Nuevo Dueño'
+  resetModal();
 });
 
 listarDuenos();

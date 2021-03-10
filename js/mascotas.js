@@ -80,6 +80,7 @@ $("#btn-Close").on("click",function() {
   tipo.value = '';
   indice.value = '';
   EditarMascota.innerHTML = 'Nueva Mascota'
+  resetModal();
 });
 
 function editar(index) {

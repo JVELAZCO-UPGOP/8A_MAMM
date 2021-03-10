@@ -30,17 +30,17 @@
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/index.html">Mascotas<span
+                        <a class="nav-link" href="/veterinaria-fullstack/frontend/index.html">Mascotas<span
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/veterinarias.html">Veterinari@s</a>
+                        <a class="nav-link" href="/veterinaria-fullstack/frontend/veterinarias.html">Veterinarios/a</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/consultas.html">Consultas</a>
+                        <a class="nav-link" href="/veterinaria-fullstack/frontend/consultas.html">Consultas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/duenos.html">Dueños</a>
+                        <a class="nav-link" href="/veterinaria-fullstack/frontend/duenos.html">Dueños</a>
                     </li>
                 </ul>
                 <form class="form-inline">
@@ -79,12 +79,12 @@
             </tbody>
         </table>
     </div>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" id="exampleModalCenter" data-backdrop= "static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Mascota</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" id="btn-Close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -120,7 +120,7 @@
                   </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-Cerrar">Cerrar</button>
               <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-guardar">Crear</button>
             </div>
           </div>
@@ -139,7 +139,7 @@
         crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/v4-shims.js"></script>
-    <script src="./js/mascotas.js"></script>
+    <script src="/veterinaria-fullstack/frontend/js/mascotas.js"></script>
 </body>
 
 </html>

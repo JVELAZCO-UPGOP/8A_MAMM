@@ -4,7 +4,10 @@ const dueno = document.getElementById("dueno");
 const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
+const btnCerrar =  document.getElementById('btn-Cerrar');
+const btnClose = document.getElementById ('btn-Close');
 const listaMascotas = document.getElementById("lista-mascotas");
+const EditarMascota = document.getElementById('exampleModalCenterTitle');
 const url = "https://veterinaria-backend.now.sh/mascotas";
 
 let mascotas = [];
@@ -85,15 +88,42 @@ async function enviarDatos(evento) {
   }
 }
 
+function enviarDatoCerrar() {
+  const accion = btnCerrar.innerHTML;
+  switch(accion) {
+    case  'Cerrar':
+      EditarMascota.innerHTML = 'Nueva Mascota'
+      btnGuardar.innerHTML = 'Editar'
+      resetModal();
+    break;  
+  }
+}
+
+$("#btn-Close").on("click",function() {
+  nombre.value = '';
+  dueno.value = '';
+  tipo.value = '';
+  indice.value = '';
+  EditarMascota.innerHTML = 'Nueva Mascota'
+  resetModal();
+});
+
 function editar(index) {
+  btnGuardar.innerHTML = 'Editar'
+  btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
-    btnGuardar.innerHTML = "Editar";
+    if (btnGuardar.innerHTML == 'Editar'){
+      EditarMascota.innerHTML = 'Ediar Mascota'
     $("#exampleModalCenter").modal("toggle");
     const mascota = mascotas[index];
     nombre.value = mascota.nombre;
     dueno.value = mascota.dueno;
     tipo.value = mascota.tipo;
     indice.value = index;
+    }
+    else if (btnCerrar.innerHTML == 'Cerrar'){
+      btnGuardar.innerHTML = 'Editar'
+    }
   };
 }
 
@@ -108,13 +138,21 @@ function resetModal() {
 function eliminar(index) {
   const urlEnvio = `${url}/${index}`;
   return async function clickEnEliminar() {
+    var respuesta = confirm("Estas seguro de eliminar la mascota?");
     try {
-      const respuesta = await fetch(urlEnvio, {
-        method: "DELETE",
-      });
-      if (respuesta.ok) {
-        listarMascotas();
-        resetModal();
+      if (respuesta == true)
+      {
+        const respuesta = await fetch(urlEnvio, {
+          method: "DELETE",
+        });
+        if (respuesta.ok) {
+          listarMascotas();
+          resetModal();
+        }
+      }
+      else
+      {
+        return false;
       }
     } catch (error) {
       console.log({ error });
@@ -127,3 +165,4 @@ listarMascotas();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
+btnCerrar.onclick = enviarDatoCerrar;
