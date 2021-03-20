@@ -4,8 +4,11 @@ const apellido = document.getElementById("apellido");
 const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
+const btnCerrar =  document.getElementById('btn-Cerrar');
+const btnClose = document.getElementById ('btn-Close');
 const listaVeterinarias = document.getElementById("lista-veterinarias");
-const url = "https://veterinaria-backend.now.sh/veterinarias";
+const EditarMascota = document.getElementById('exampleModalCenterTitle');
+const url = "https://veterinaria-bakend.vercel.app/veterinarias";
 let veterinarias = [];
 
 async function listarVeterinarias() {
@@ -42,7 +45,7 @@ async function listarVeterinarias() {
       return;
     }
     listaVeterinarias.innerHTML = `<tr>
-    <td colspan="5" class="lista-vacia">No hay veterinarias</td>
+    <td colspan="5" class="lista-vacia">No hay veterinarios/a</td>
   </tr>`;
   } catch (error) {
     console.log({ error });
@@ -83,15 +86,42 @@ async function enviarDatos(evento) {
   }
 }
 
+function enviarDatoCerrar() {
+  const accion = btnCerrar.innerHTML;
+  switch(accion) {
+    case  'Cerrar':
+      EditarMascota.innerHTML = 'Nueva Veterinario/a'
+      btnGuardar.innerHTML = 'Editar'
+      resetModal();
+    break;  
+  }
+}
+
+$("#btn-Close").on("click",function() {
+  nombre.value = '';
+  dueno.value = '';
+  tipo.value = '';
+  indice.value = '';
+  EditarMascota.innerHTML = 'Nuevo Veterinario/a'
+  resetModal();
+});
+
 function editar(index) {
+  btnGuardar.innerHTML = 'Editar'
+  btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
-    btnGuardar.innerHTML = "Editar";
+    if (btnGuardar.innerHTML == 'Editar'){
+      EditarMascota.innerHTML = 'Editar Veterinario/a'
     $("#exampleModalCenter").modal("toggle");
     const veterinaria = veterinarias[index];
     indice.value = index;
     nombre.value = veterinaria.nombre;
     apellido.value = veterinaria.apellido;
     documento.value = veterinaria.documento;
+  }
+  else if (btnCerrar.innerHTML == 'Cerrar'){
+    btnGuardar.innerHTML = 'Editar'
+  }
   };
 }
 
@@ -106,7 +136,10 @@ function resetModal() {
 function eliminar(index) {
   const urlEnvio = `${url}/${index}`;
   return async function clickEnEliminar() {
+    var respuesta = confirm("Estas seguro de eliminar el veterinario/a?");
     try {
+      if (respuesta == true)
+      {
       const respuesta = await fetch(urlEnvio, {
         method: "DELETE",
         mode: "cors",
@@ -114,6 +147,11 @@ function eliminar(index) {
       if (respuesta.ok) {
         listarVeterinarias();
       }
+    }
+    else
+    {
+      return false;
+    }
     } catch (error) {
       console.log({ error });
       $(".alert").show();
@@ -125,3 +163,4 @@ listarVeterinarias();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
+btnCerrar.onclick = enviarDatoCerrar;

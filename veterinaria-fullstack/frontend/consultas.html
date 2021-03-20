@@ -34,7 +34,7 @@
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/veterinarias.html">Veterinari@s</a>
+                        <a class="nav-link" href="/veterinarias.html">Veterinarios/a</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/consultas.html">Consultas</a>
@@ -51,6 +51,7 @@
         </nav>
         <!-- fin NAV -->
         <div class="actions-menu">
+            <h1>Consultas</h1>
             <div class="actions-menu-content">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                     Nueva
@@ -68,7 +69,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Mascota</th>
-                    <th scope="col">Veterinari@</th>
+                    <th scope="col">Veterinario/a</th>
                     <th scope="col">Diagnostico</th>
                     <th scope="col">Creado</th>
                     <th scope="col">Editado</th>
@@ -80,18 +81,18 @@
             </tbody>
         </table>
     </div>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" data-backdrop= "static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Mascota</h5>
+              <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Consulta</h5>
               <div class="alert alert-warning alert-dismissible" role="alert">
                 Te faltan datos!
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" id="btn-Close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -109,7 +110,7 @@
                     <div class="form-row">
                         <div class="col">
                             <select class="form-control" id="veterinaria">
-                              <option value="">Seleccione Veterinari@</option>
+                              <option value="">Seleccione Veterinario/a</option>
                             </select>
                         </div>
                     </div>
@@ -132,8 +133,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="btn-guardar">Crear</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-Cerrar">Cerrar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-guardar">Crear</button>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ const btnCerrar =  document.getElementById('btn-Cerrar');
 const btnClose = document.getElementById ('btn-Close');
 const listaMascotas = document.getElementById("lista-mascotas");
 const EditarMascota = document.getElementById('exampleModalCenterTitle');
-const url = "https://veterinaria-backend.now.sh/mascotas";
+const url = "https://veterinaria-bakend.vercel.app/mascotas";
 
 let mascotas = [];
 
@@ -113,7 +113,7 @@ function editar(index) {
   btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
     if (btnGuardar.innerHTML == 'Editar'){
-      EditarMascota.innerHTML = 'Ediar Mascota'
+      EditarMascota.innerHTML = 'Editar Mascota'
     $("#exampleModalCenter").modal("toggle");
     const mascota = mascotas[index];
     nombre.value = mascota.nombre;

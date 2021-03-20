@@ -5,13 +5,16 @@ const historia = document.getElementById("historia");
 const diagnostico = document.getElementById("diagnostico");
 const indice = document.getElementById("indice");
 const btnGuardar = document.getElementById("btn-guardar");
+const btnCerrar =  document.getElementById('btn-Cerrar');
+const btnClose = document.getElementById ('btn-Close');
 const formulario = document.getElementById("formulario");
+const EditarMascota = document.getElementById('exampleModalCenterTitle');
 
 let consultas = [];
 let mascotas = [];
 let veterinarias = [];
 
-const url = "https://veterinaria-backend.now.sh";
+const url = "https://veterinaria-bakend.vercel.app";
 
 async function listarConsultas() {
   const entidad = "consultas";
@@ -97,8 +100,11 @@ async function listarVeterinarias() {
 }
 
 function editar(index) {
+  btnGuardar.innerHTML = 'Editar'
+  btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
-    btnGuardar.innerHTML = "Editar";
+    if (btnGuardar.innerHTML == 'Editar'){
+      EditarMascota.innerHTML = 'Ediar Cunsulta'
     $("#exampleModalCenter").modal("toggle");
     const consulta = consultas[index];
     indice.value = index;
@@ -106,6 +112,11 @@ function editar(index) {
     veterinaria.value = consulta.veterinaria.id;
     historia.value = consulta.historia;
     diagnostico.value = consulta.diagnostico;
+  }
+  else if (btnCerrar.innerHTML == 'Cerrar'){
+    btnGuardar.innerHTML = 'Editar'
+  }
+    
   };
 }
 
@@ -149,6 +160,26 @@ async function enviarDatos(evento) {
   }
 }
 
+function enviarDatoCerrar() {
+  const accion = btnCerrar.innerHTML;
+  switch(accion) {
+    case  'Cerrar':
+      EditarMascota.innerHTML = 'Nueva Consulta'
+      btnGuardar.innerHTML = 'Editar'
+      resetModal();
+    break;  
+  }
+}
+
+$("#btn-Close").on("click",function() {
+  nombre.value = '';
+  dueno.value = '';
+  tipo.value = '';
+  indice.value = '';
+  EditarMascota.innerHTML = 'Nueva Consulta'
+  resetModal();
+});
+
 function resetModal() {
   btnGuardar.innerHTML = "Crear";
   [indice, mascota, veterinaria, historia, diagnostico].forEach(
@@ -179,6 +210,7 @@ function validar(datos) {
 }
 
 btnGuardar.onclick = enviarDatos;
+btnCerrar.onclick = enviarDatoCerrar;
 
 listarMascotas();
 listarConsultas();

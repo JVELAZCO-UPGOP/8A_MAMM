@@ -4,8 +4,11 @@ const apellido = document.getElementById("apellido");
 const indice = document.getElementById("indice");
 const form = document.getElementById("form");
 const btnGuardar = document.getElementById("btn-guardar");
+const btnCerrar =  document.getElementById('btn-Cerrar');
+const btnClose = document.getElementById ('btn-Close');
 const listaDuenos = document.getElementById("lista-duenos");
-const url = "https://veterinaria-backend.now.sh/duenos";
+const EditarMascota = document.getElementById('exampleModalCenterTitle');
+const url = "https://veterinaria-bakend.vercel.app/duenos";
 
 let duenos = [];
 
@@ -43,7 +46,7 @@ async function listarDuenos() {
       return;
     }
     listaDuenos.innerHTML = `<tr>
-    <td colspan="5" class="lista-vacia">No hay dueñ@s</td>
+    <td colspan="5" class="lista-vacia">No hay dueños</td>
   </tr>`;
   } catch (error) {
     console.log({ error });
@@ -84,15 +87,43 @@ async function enviarDatos(evento) {
   }
 }
 
+function enviarDatoCerrar() {
+  const accion = btnCerrar.innerHTML;
+  switch(accion) {
+    case  'Cerrar':
+      EditarMascota.innerHTML = 'Nuevo Dueño'
+      btnGuardar.innerHTML = 'Editar'
+      resetModal();
+    break;  
+  }
+}
+
+$("#btn-Close").on("click",function() {
+  nombre.value = '';
+  dueno.value = '';
+  tipo.value = '';
+  indice.value = '';
+  EditarMascota.innerHTML = 'Nuevo Dueño'
+  resetModal();
+});
+
 function editar(index) {
+  btnGuardar.innerHTML = 'Editar'
+  btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
-    btnGuardar.innerHTML = "Editar";
+    if (btnGuardar.innerHTML == 'Editar'){
+      EditarMascota.innerHTML = 'Editar Dueño'
     $("#exampleModalCenter").modal("toggle");
     const dueno = duenos[index];
     indice.value = index;
     nombre.value = dueno.nombre;
     apellido.value = dueno.apellido;
     documento.value = dueno.documento;
+  }
+  else if (btnCerrar.innerHTML == 'Cerrar'){
+    btnGuardar.innerHTML = 'Editar'
+  }
+    
   };
 }
 
@@ -107,13 +138,21 @@ function resetModal() {
 function eliminar(index) {
   const urlEnvio = `${url}/${index}`;
   return async function clickEnEliminar() {
+    var respuesta = confirm("Estas seguro de eliminar el Dueño?");
     try {
+      if (respuesta == true)
+      {
       const respuesta = await fetch(urlEnvio, {
         method: "DELETE",
         mode: "cors",
       });
       if (respuesta.ok) {
         listarDuenos();
+      }
+      }
+      else
+      {
+        return false;
       }
     } catch (error) {
       console.log({ error });
@@ -126,3 +165,4 @@ listarDuenos();
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
+btnCerrar.onclick = enviarDatoCerrar;
