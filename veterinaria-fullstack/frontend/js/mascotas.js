@@ -109,9 +109,10 @@ $("#btn-Close").on("click",function() {
 });
 
 function editar(index) {
-  btnGuardar.innerHTML = 'Editar'
   btnCerrar.innerHTML = 'Cerrar'
   return function cuandoCliqueo() {
+    btnGuardar.innerHTML = 'Editar'
+    
     if (btnGuardar.innerHTML == 'Editar'){
       EditarMascota.innerHTML = 'Editar Mascota'
     $("#exampleModalCenter").modal("toggle");
